@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Band Chart from Time Series</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #chart {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+  <h1>Band Chart from Time Series</h1>
+  <div id="chart"></div>
+  
+  <script>
+    // Generate synthetic data
+    const n = 100;  // Number of data points
+    const data = Array.from({length: n}, (_, i) => {
+      const date = new Date();
+      date.setDate(date.getDate() + i);
+      return {
+        date: date,
+        value: 50 + Math.sin(i / 50) * 5 + Math.random() * 0.3 +50,  // Example time series data
+        sigma: 3 + Math.random() * 2  // Example time series data
+      };
+    });
+
+    const margin = {top: 20, right: 20, bottom: 30, left: 50};
+    const width = 960 - margin.left - margin.right;
+    const height = 500 - margin.top - margin.bottom;
+
+    const x = d3.scaleTime()
+      .domain(d3.extent(data, d => d.date))
+      .range([0, width]);
+
+    const y = d3.scaleLinear()
+      .domain([d3.min(data, d => d.value) - 10, d3.max(data, d => d.value) + 10])
+      .range([height, 0]);
+
+    const area = d3.area()
+      .x(d => x(d.date))
+      .y0(d => y(d.value - d.sigma))  // Lower bound
+      .y1(d => y(d.value + d.sigma));  // Upper bound
+
+    const svg = d3.select("#chart").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "steelblue")
+      .attr("d", area);
+
+    svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", `translate(0,${height})`)
+      .call(d3.axisBottom(x));
+
+    svg.append("g")
+      .attr("class", "y axis")
+      .call(d3.axisLeft(y));
+
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "black")
+      .attr("stroke-width", 1.5)
+      .attr("d", d3.line()
+        .x(d => x(d.date))
+        .y(d => y(d.value))
+      );
+  </script>
+</body>
+</html>

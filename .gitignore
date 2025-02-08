@@ -1,0 +1,12 @@
+
+*.csv
+*.pyc
+*.pyc
+/node_modules
+*.txt
+/tests/BondVis2.0/node_modules
+*.gz
+*.part-ac
+*.zip
+*.part-ab
+*.part-aa

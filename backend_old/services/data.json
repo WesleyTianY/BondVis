@@ -1,0 +1,262 @@
+{
+    "nodes": [
+        {
+            "name": "subsequence6Pkjo",
+            "disp": [
+                "Name4",
+                "Name5",
+                "Name6",
+                "Name7",
+                "Name8"
+            ]
+        },
+        {
+            "name": "subsequencehfOuF",
+            "disp": [
+                "Name1",
+                "Name2",
+                "Name3",
+                "Name9"
+            ]
+        },
+        {
+            "name": "subsequencekLfq4",
+            "disp": [
+                "Name3",
+                "Name9",
+                "Name10",
+                "Name14"
+            ]
+        },
+        {
+            "name": "subsequencewu6jI",
+            "disp": [
+                "Name3",
+                "Name9",
+                "Name11"
+            ]
+        },
+        {
+            "name": "subsequenceoPM2h",
+            "disp": [
+                "Name11",
+                "Name19",
+                "Name18"
+            ]
+        },
+        {
+            "name": "transactionzGCGY",
+            "disp": "Name27"
+        },
+        {
+            "name": "transactiondDsFt",
+            "disp": "Name12"
+        },
+        {
+            "name": "transactionHvPB4",
+            "disp": "Name22"
+        },
+        {
+            "name": "transactionXxnPq",
+            "disp": "Name26"
+        },
+        {
+            "name": "transactionT3m4a",
+            "disp": "Name21"
+        },
+        {
+            "name": "transactionRZ2Z6",
+            "disp": "Name15"
+        },
+        {
+            "name": "transaction7Wcey",
+            "disp": "Name13"
+        },
+        {
+            "name": "transactionzNf8R",
+            "disp": "Name25"
+        },
+        {
+            "name": "transactionNwG6C",
+            "disp": "Name17"
+        },
+        {
+            "name": "transaction6gMtB",
+            "disp": "Name16"
+        },
+        {
+            "name": "transactionqysvB",
+            "disp": "Name20"
+        },
+        {
+            "name": "transactionyBKgR",
+            "disp": "Name23"
+        },
+        {
+            "name": "transactionZvvLR",
+            "disp": "Name24"
+        }
+    ],
+    "flows": [
+        {
+            "thru": [
+                "Name1",
+                "Name2",
+                "Name3",
+                "subsequence6Pkjo"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "subsequencehfOuF",
+                "Name10",
+                "Name8"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "subsequencehfOuF",
+                "Name11",
+                "Name8"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "subsequencehfOuF",
+                "Name7",
+                "Name8"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "subsequencehfOuF",
+                "Name12",
+                "Name13"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "subsequencekLfq4",
+                "Name15",
+                "Name16"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "Name17",
+                "subsequence6Pkjo"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "subsequencekLfq4",
+                "Name18"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "subsequencewu6jI",
+                "Name19",
+                "Name18"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "Name9",
+                "Name10",
+                "Name19",
+                "Name18"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "Name20",
+                "Name6",
+                "Name7",
+                "Name8"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "Name21",
+                "subsequenceoPM2h"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "Name22",
+                "Name10",
+                "Name8"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "Name22",
+                "Name11",
+                "Name8"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "Name1",
+                "Name14",
+                "Name18"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "Name1",
+                "Name23",
+                "Name24"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "Name25",
+                "Name11",
+                "Name8"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "Name1",
+                "Name23",
+                "Name26"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "Name27",
+                "Name23",
+                "Name26"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "Name21",
+                "Name11",
+                "Name8"
+            ],
+            "value": 1
+        }
+    ]
+}

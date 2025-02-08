@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Force-Directed Graph</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        .node {
+            stroke: #fff;
+            stroke-width: 1.5px;
+        }
+        
+        .link {
+            stroke: #999;
+            stroke-opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const width = 1560;
+        const height = 800;
+        
+        const svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+        d3.json("otherdata.json").then(function(graph) {
+            console.log(graph);
+            const simulation = d3.forceSimulation(graph.nodes)
+                .force("link", d3.forceLink(graph.links).id(d => d.id))
+                .force("charge", d3.forceManyBody().strength(-50))
+                .force("center", d3.forceCenter(width / 2, height / 2))
+                .force('x', d3.forceX().strength(0.015))
+                .force('y', d3.forceY().strength(0.015))
+            const link = svg.append("g")
+                .attr("class", "links")
+                .selectAll("line")
+                .data(graph.links)
+                .enter().append("line")
+                .attr("class", "link")
+                .attr("stroke-width", d => Math.sqrt(d.value));
+            const node = svg.append("g")
+                .attr("class", "nodes")
+                .selectAll("g")
+                .data(graph.nodes)
+                .enter().append("g")
+                .attr("class", "node")
+                .call(d3.drag()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended))
+            // 添加圆形节点
+            node.append("circle")
+                .attr("r", d => Math.sqrt(Math.abs(d.position))*2)
+                .style("fill", d => d.position >= 0 ? "hsl(0, 40%, 70%)" : "hsl(120, 40%, 70%)");
+
+            node.append("path")
+                .attr("d", d => {
+                    const offset_count = (d.transactions_info.buy_num + d.transactions_info.sell_num)/2// 从节点数据中获取Variance属性
+                    // 20 的值已经就是最大了，可以根据实际情况调整
+                    const radius = Math.sqrt(Math.abs(d.position))*2; // 甜甜圈的半径
+                    // const radius = 5; // 甜甜圈的半径
+                    const startAngle = 0; // 开始角度
+                    const endAngle = Math.PI * 2 // 结束角度，根据Variance来控制
+                    const profit_r = d.profit !== 0 ? 7 : 0
+                    // 使用D3的arc生成器创建甜甜圈的路径
+                    const arcGenerator = d3.arc()
+                        .innerRadius(radius+profit_r) // 内半径
+                        .outerRadius(radius+profit_r + offset_count) // 外半径
+                        .startAngle(startAngle)
+                        .endAngle(endAngle);
+
+                    return arcGenerator();
+                })
+                .attr("fill", "hsl(210, 90%, 80%)") // 根据正负设置填充颜色
+                // .attr("stroke", "grey"); // 设置边框颜色
+            const angleScale = d3.scaleLinear().range([0, Math.PI * 2]).domain([0, d3.max(graph.nodes, d => d.profit)])
+            node.append("path")
+                .attr("d", d => {
+                    const offset_count = (d.transactions_info.buy_num + d.transactions_info.sell_num)/2// 从节点数据中获取Variance属性
+                    // 20 的值已经就是最大了，可以根据实际情况调整
+                    const profit_percentage = d.profit; // 从节点数据中获取Variance属性
+                    // 20 的值已经就是最大了，可以根据实际情况调整
+                    // const radius = d.trader_stats.offset_volume / scaleFactor; // 甜甜圈的半径
+                    const radius = Math.sqrt(Math.abs(d.position))*2; // 甜甜圈的半径
+                    const startAngle = 0; // 开始角度
+                    console.log(d, d3.min(graph.nodes, d => d.profit), d3.max(graph.nodes, d => d.profit))
+                    // console.log(d, profit_percentage, angleScale(profit_percentage))
+                    const endAngle = angleScale(profit_percentage); // 结束角度，根据Variance来控制
+                    console.log(profit_percentage, endAngle)
+                    // 使用D3的arc生成器创建甜甜圈的路径
+                    
+                    const arcGenerator = d3.arc()
+                        .innerRadius(radius+profit_percentage) // 内半径
+                        .outerRadius(radius+profit_percentage+7) // 外半径
+                        .startAngle(0)
+                        .endAngle(endAngle);
+
+                    return arcGenerator();
+                })
+                .attr("fill", d => d.profit >= 0 ? "hsl(0, 60%, 60%)" : "hsl(120, 60%, 60%)") // 根据正负设置填充颜色
+                .attr("stroke", "white"); // 设置边框颜色
+            node.append("title")
+                .text(d => `ID: ${d.id}\nProfit: ${d.profit}\nPosition: ${d.position}\nTransactions: ${JSON.stringify(d.transactions_info)}`);
+
+            simulation.on("tick", () => {
+                link
+                    .attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+                node.attr("transform", d => `translate(${d.x},${d.y})`)
+            });
+
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+        });
+    </script>
+</body>
+</html>

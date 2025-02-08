@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Force-Directed Graph</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        .node circle {
+            fill: lightblue;
+            stroke: #000;
+            stroke-width: 1.5px;
+            cursor: pointer; /* 允许节点拖拽 */
+        }
+        .node text {
+            pointer-events: none;
+            font-size: 12px;
+        }
+        .node.red circle {
+            fill: red; /* 异常节点标记为红色 */
+        }
+        .link {
+            fill: none;
+            stroke: #999;
+            stroke-opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <svg width="960" height="600"></svg>
+    <script>
+        const svg = d3.select("svg"),
+              width = +svg.attr("width"),
+              height = +svg.attr("height");
+
+        const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+        d3.json("force_directed_data.json").then(function(graph) {
+            const simulation = d3.forceSimulation(graph.nodes)
+                .force("link", d3.forceLink(graph.links).id(d => d.id))
+                .force("charge", d3.forceManyBody().strength(-10))
+                .force("center", d3.forceCenter(width / 2, height / 2));
+            console.log(graph);
+            // 创建边
+            const link = svg.append("g")
+                .attr("class", "links")
+                .selectAll("line")
+                .data(graph.links)
+                .enter().append("line")
+                .attr("class", "link")
+                .style("stroke", d => d.isAbnormal ? "red" : "black");  // 异常边涂成红色，其他边涂成黑色
+
+            const node = svg.append("g")
+                .attr("class", "nodes")
+                .selectAll("g")
+                .data(graph.nodes)
+                .enter().append("g")
+                .attr("class", d => `node ${d.is_abnormal ? 'red' : 'black'}`) // 根据节点是否异常添加类名
+                .call(d3.drag() // 启用拖拽功能
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended));
+
+            node.append("circle")
+                .attr("r", 5)
+                // .attr("fill", d => color(d.institution));
+                .attr("fill", d => d.isAbnormal ? "red" : color(d.institution))  // 根据 isAbnormal 属性设置颜色
+
+            node.append("text")
+                .attr("dx", 8)
+                .attr("dy", ".35em")
+                .text(d => `${d.institution}: ${d.price}`);
+
+            simulation.on("tick", () => {
+                link
+                    .attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+
+                node
+                    .attr("transform", d => `translate(${d.x},${d.y})`);
+            });
+
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+        });
+    </script>
+</body>
+</html>

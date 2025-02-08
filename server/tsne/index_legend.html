@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Plot with Scatter Plot</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <svg id="chart" width="800" height="400"></svg>
+    <script>
+        // Sample data
+        const data = [
+            { group: "Group 1", value: 10 },
+            { group: "Group 1", value: 20 },
+            { group: "Group 1", value: 30 },
+            { group: "Group 1", value: 40 },
+            { group: "Group 1", value: 50 },
+            { group: "Group 2", value: 15 },
+            { group: "Group 2", value: 25 },
+            { group: "Group 2", value: 35 },
+            { group: "Group 2", value: 45 },
+            { group: "Group 2", value: 55 },
+            { group: "Group 3", value: 20 },
+            { group: "Group 3", value: 30 },
+            { group: "Group 3", value: 40 },
+            { group: "Group 3", value: 50 },
+            { group: "Group 3", value: 60 }
+        ];
+
+        // Set dimensions and margins for the chart
+        const margin = { top: 20, right: 30, bottom: 40, left: 40 },
+            width = 800 - margin.left - margin.right,
+            height = 400 - margin.top - margin.bottom;
+
+        // Create SVG element
+        const svg = d3.select("#chart")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        // Create scale functions
+        const x = d3.scaleBand()
+            .domain(data.map(d => d.group))
+            .range([0, width])
+            .paddingInner(0.1)
+            .paddingOuter(0.2);
+
+        const y = d3.scaleLinear()
+            .domain([0, d3.max(data, d => d.value)])
+            .range([height, 0]);
+
+        // Draw scatter plot
+        svg.selectAll(".dot")
+            .data(data)
+            .enter().append("circle")
+            .attr("class", "dot")
+            .attr("cx", d => x(d.group) + x.bandwidth() / 2)
+            .attr("cy", d => y(d.value))
+            .attr("r", 5);
+
+        // Draw box plot
+        const boxPlot = d3.box()
+            .whiskers(d3.min)
+            .height(height)
+            .domain([0, d3.max(data, d => d.value)]);
+
+        svg.selectAll(".box")
+            .data([data])
+            .enter().append("g")
+            .attr("class", "box")
+            .attr("transform", "translate(0,0)")
+            .call(boxPlot);
+
+        // Draw legend
+        const legend = svg.append("g")
+            .attr("transform", `translate(${width - 150},${margin.top})`);
+
+        legend.selectAll("rect")
+            .data([...new Set(data.map(d => d.group))])
+            .enter().append("rect")
+            .attr("x", 0)
+            .attr("y", (d, i) => i * 20)
+            .attr("width", 10)
+            .attr("height", 10)
+            .style("fill", d => color(d));
+
+        legend.selectAll("text")
+            .data([...new Set(data.map(d => d.group))])
+            .enter().append("text")
+            .attr("x", 15)
+            .attr("y", (d, i) => i * 20 + 9)
+            .text(d => d)
+            .style("font-size", "12px")
+            .attr("alignment-baseline", "middle");
+
+        function color(group) {
+            return {
+                "Group 1": "red",
+                "Group 2": "green",
+                "Group 3": "blue"
+            }[group];
+        }
+    </script>
+</body>
+</html>

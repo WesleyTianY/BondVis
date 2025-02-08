@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Force-Directed Graph</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <svg width="1260" height="900"></svg>
+
+  <script>
+    // 使用 D3 加载 graph.json 文件
+
+    d3.json("graph3.json").then(function(data) {
+      const width = 1260;
+      const height = 900;
+
+      const svg = d3.select("svg")
+          .attr("width", width)
+          .attr("height", height);
+
+      const colorScale = d3.scaleOrdinal()
+        .domain(data.nodes.map(d => d.name))
+        .range(d3.schemeCategory10); // 使用内置的颜色方案，您也可以自定义颜色方案
+
+      // const forceAttraction = d3.forceManyBody()
+      //     .strength(d => d.name === "similar" ? -100 : -30); // 设置相同属性的节点之间的吸引力强度
+      const forceAttraction = d3.forceManyBody()
+        .strength(d => {
+            // 找到所有颜色相同的节点
+            const similarNodes = data.nodes.filter(node => node.color === d.color);
+            // 计算平均吸引力，使得相同颜色的节点相互吸引
+            const avgStrength = -100; // 平均吸引力强度，根据实际情况调整
+            return similarNodes.length > 1 ? avgStrength : -30; // 只有当相同颜色的节点数大于1时应用吸引力
+        });
+
+      // 获取数据中的最早和最晚时间
+      const earliestTime = d3.min(data.nodes, d => d.time);
+      const latestTime = d3.max(data.nodes, d => d.time);
+
+      // 定义时间比例尺，将时间映射到水平方向上的位置
+      const timeScale = d3.scaleTime()
+          .domain([new Date(earliestTime), new Date(latestTime)]) // 时间范围
+          .range([150, width - 150]); // 水平位置范围
+
+      // 创建力导向图模拟
+      const simulation = d3.forceSimulation(data.nodes)
+          .force("link", d3.forceLink(data.links)
+            .id(d => d.id)
+            .distance(d => {
+                return d.length
+            }))
+          .force("charge", d3.forceManyBody().strength(-30)) // 设置全局的斥力
+          .force("center", d3.forceCenter(width / 2, height / 2))
+          .force("x", d3.forceX()) 
+          .force("y", d3.forceY(height / 2));
+
+      simulation.force("attraction", forceAttraction)
+      // 绘制链接
+      const link = svg.selectAll("line")
+          .data(data.links)
+          .enter().append("line")
+          .attr("stroke", "#999")
+          .attr("stroke-opacity", 1)
+          // .attr("stroke-width", d => Math.sqrt(d.value))
+          .attr("stroke-dasharray", function(d) {
+              // 如果链接的长度小于 10，设置为短虚线
+              return d.length < 4 ? "5,5" : null;
+          });
+      // 绘制节点
+      const node = svg.selectAll("circle")
+          .data(data.nodes)
+          .enter().append("circle")
+          .attr("r", function(d) {
+              return d.member_number ? 10 : 5; // 如果有 member_number 属性则设置半径为 10，否则为 5
+          })
+          // .attr("fill", "steelblue");
+          .attr("fill", d => colorScale(d.name))
+
+      // 添加节点标签
+      node.append("title")
+          .text(d => d.id);
+
+      // Add a drag behavior.
+      node.call(d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended));
+  
+      // 定义自定义的 tick 函数
+      function customTick() {
+          // 更新节点的位置
+          node.attr("cx", d => d.x) // 根据时间设置节点的水平位置
+              .attr("cy", d => d.y);
+
+          // 更新链接的位置
+          link.attr("x1", d => d.source.x) // 使用节点的时间属性映射得到的水平位置
+              .attr("y1", d => d.source.y)
+              .attr("x2", d => d.target.x) // 使用节点的时间属性映射得到的水平位置
+              .attr("y2", d => d.target.y);
+      }
+
+      // 模拟迭代时更新链接和节点的位置
+      // simulation.on("tick", () => {
+      //   link
+      //       .attr("x1", d => d.source.x)
+      //       .attr("y1", d => d.source.y)
+      //       .attr("x2", d => d.target.x)
+      //       .attr("y2", d => d.target.y);
+
+      //   node
+      //       .attr("cx", d => d.x)
+      //       .attr("cy", d => d.y);
+      // });
+      simulation.on("tick", customTick)
+      // Reheat the simulation when drag starts, and fix the subject position.
+      function dragstarted(event) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        event.subject.fx = event.subject.x;
+        event.subject.fy = event.subject.y;
+      }
+
+      // Update the subject (dragged node) position during drag.
+      function dragged(event) {
+        event.subject.fx = event.x;
+        event.subject.fy = event.y;
+      }
+
+      // Restore the target alpha so the simulation cools after dragging ends.
+      // Unfix the subject position now that it’s no longer being dragged.
+      function dragended(event) {
+        if (!event.active) simulation.alphaTarget(0);
+        event.subject.fx = null;
+        event.subject.fy = null;
+      }
+    });
+  </script>
+</body>
+</html>

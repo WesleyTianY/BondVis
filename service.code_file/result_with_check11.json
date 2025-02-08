@@ -1,0 +1,229 @@
+{
+    "Data source": "[Robert J. MacG. Dawson](http://www.amstat.org/publications/jse/v3n3/datasets.dawson.html)",
+    "nodes": [
+        {
+            "disp": [
+                "Name4",
+                "Name5",
+                "Name6",
+                "Name7"
+            ],
+            "name": "<removed_4>U7Snm"
+        },
+        {
+            "disp": [
+                "Name5",
+                "Name6",
+                "Name7",
+                "Name8"
+            ],
+            "name": "<removed_4>gWkGM"
+        },
+        {
+            "disp": [
+                "Name1",
+                "Name2",
+                "Name3",
+                "Name9"
+            ],
+            "name": "<removed_4>ZeoXo"
+        },
+        {
+            "disp": [
+                "Name3",
+                "Name9",
+                "Name10",
+                "Name14"
+            ],
+            "name": "<removed_4>8DAY8"
+        },
+        {
+            "disp": [
+                "Name11",
+                "Name19",
+                "Name18"
+            ],
+            "name": "<removed_3>HieGk"
+        },
+        {
+            "disp": [
+                "Name10",
+                "Name8"
+            ],
+            "name": "<removed_2>ukYxH"
+        },
+        {
+            "disp": [
+                "Name11",
+                "Name8"
+            ],
+            "name": "<removed_2>ZnnZu"
+        },
+        {
+            "disp": [
+                "Name7",
+                "Name8"
+            ],
+            "name": "<removed_2>9RKb7"
+        },
+        {
+            "disp": [
+                "Name11",
+                "Name19"
+            ],
+            "name": "<removed_2>Sc7Zm"
+        },
+        {
+            "disp": [
+                "Name19",
+                "Name18"
+            ],
+            "name": "<removed_2>RkEan"
+        },
+        {
+            "disp": [
+                "Name21",
+                "Name11"
+            ],
+            "name": "<removed_2>LL1wK"
+        },
+        {
+            "disp": [
+                "Name1",
+                "Name23"
+            ],
+            "name": "<removed_2>svbGi"
+        },
+        {
+            "disp": [
+                "Name23",
+                "Name26"
+            ],
+            "name": "<removed_2>G9Yw0"
+        }
+    ],
+    "flows": [
+        {
+            "thru": [
+                "<removed_4>U7Snm"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_4>ZeoXo",
+                "<removed_2>ukYxH"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_4>ZeoXo",
+                "<removed_2>ZnnZu"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_4>ZeoXo",
+                "<removed_2>9RKb7"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_4>ZeoXo"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_4>8DAY8"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_4>U7Snm"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_4>8DAY8"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_2>Sc7Zm"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_2>RkEan"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_2>9RKb7"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_2>LL1wK",
+                "<removed_2>RkEan"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_2>ukYxH"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_2>ZnnZu"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_2>svbGi"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_2>ZnnZu"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_2>svbGi"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_2>G9Yw0"
+            ],
+            "value": 1
+        },
+        {
+            "thru": [
+                "<removed_2>LL1wK"
+            ],
+            "value": 1
+        }
+    ]
+}

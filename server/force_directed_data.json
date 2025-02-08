@@ -1,0 +1,607 @@
+{
+  "nodes": [
+    {
+      "id": "Inst_94",
+      "institution": "Inst_94",
+      "price": 92.44,
+      "time": "2024-06-01",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_94",
+      "institution": "Inst_94",
+      "price": 99.77,
+      "time": "2024-06-02",
+      "isAbnormal": true
+    },
+    {
+      "id": "Inst_69",
+      "institution": "Inst_69",
+      "price": 105.13,
+      "time": "2024-06-03",
+      "isAbnormal": true
+    },
+    {
+      "id": "Inst_3",
+      "institution": "Inst_3",
+      "price": 109.19,
+      "time": "2024-06-04",
+      "isAbnormal": true
+    },
+    {
+      "id": "Inst_77",
+      "institution": "Inst_77",
+      "price": 113.11,
+      "time": "2024-06-05",
+      "isAbnormal": true
+    },
+    {
+      "id": "Inst_83",
+      "institution": "Inst_83",
+      "price": 113.58,
+      "time": "2024-06-06",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_57",
+      "institution": "Inst_57",
+      "price": 114.5,
+      "time": "2024-06-07",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_0",
+      "institution": "Inst_0",
+      "price": 114.68,
+      "time": "2024-06-08",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_54",
+      "institution": "Inst_54",
+      "price": 114.86,
+      "time": "2024-06-09",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_97",
+      "institution": "Inst_97",
+      "price": 114.97,
+      "time": "2024-06-10",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_44",
+      "institution": "Inst_44",
+      "price": 97.96,
+      "time": "2024-06-01",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_93",
+      "institution": "Inst_93",
+      "price": 98.08,
+      "time": "2024-06-02",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_48",
+      "institution": "Inst_48",
+      "price": 102.34,
+      "time": "2024-06-03",
+      "isAbnormal": true
+    },
+    {
+      "id": "Inst_80",
+      "institution": "Inst_80",
+      "price": 103.22,
+      "time": "2024-06-04",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_73",
+      "institution": "Inst_73",
+      "price": 105.86,
+      "time": "2024-06-05",
+      "isAbnormal": true
+    },
+    {
+      "id": "Inst_37",
+      "institution": "Inst_37",
+      "price": 95.37,
+      "time": "2024-06-01",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_12",
+      "institution": "Inst_12",
+      "price": 95.8,
+      "time": "2024-06-02",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_46",
+      "institution": "Inst_46",
+      "price": 100.44,
+      "time": "2024-06-03",
+      "isAbnormal": true
+    },
+    {
+      "id": "Inst_85",
+      "institution": "Inst_85",
+      "price": 101.38,
+      "time": "2024-06-04",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_82",
+      "institution": "Inst_82",
+      "price": 108.56,
+      "time": "2024-06-05",
+      "isAbnormal": true
+    },
+    {
+      "id": "Inst_68",
+      "institution": "Inst_68",
+      "price": 108.74,
+      "time": "2024-06-06",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_48",
+      "institution": "Inst_48",
+      "price": 109.75,
+      "time": "2024-06-07",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_88",
+      "institution": "Inst_88",
+      "price": 110.5,
+      "time": "2024-06-08",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_98",
+      "institution": "Inst_98",
+      "price": 110.75,
+      "time": "2024-06-09",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_4",
+      "institution": "Inst_4",
+      "price": 111.19,
+      "time": "2024-06-10",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_72",
+      "institution": "Inst_72",
+      "price": 94.52,
+      "time": "2024-06-01",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_83",
+      "institution": "Inst_83",
+      "price": 95.36,
+      "time": "2024-06-02",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_82",
+      "institution": "Inst_82",
+      "price": 95.61,
+      "time": "2024-06-03",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_31",
+      "institution": "Inst_31",
+      "price": 96.13,
+      "time": "2024-06-04",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_95",
+      "institution": "Inst_95",
+      "price": 96.99,
+      "time": "2024-06-05",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_17",
+      "institution": "Inst_17",
+      "price": 97.33,
+      "time": "2024-06-01",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_6",
+      "institution": "Inst_6",
+      "price": 97.48,
+      "time": "2024-06-02",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_20",
+      "institution": "Inst_20",
+      "price": 97.89,
+      "time": "2024-06-03",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_8",
+      "institution": "Inst_8",
+      "price": 98.47,
+      "time": "2024-06-04",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_59",
+      "institution": "Inst_59",
+      "price": 99.43,
+      "time": "2024-06-05",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_1",
+      "institution": "Inst_1",
+      "price": 99.54,
+      "time": "2024-06-06",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_68",
+      "institution": "Inst_68",
+      "price": 100.31,
+      "time": "2024-06-07",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_43",
+      "institution": "Inst_43",
+      "price": 105.81,
+      "time": "2024-06-08",
+      "isAbnormal": true
+    },
+    {
+      "id": "Inst_92",
+      "institution": "Inst_92",
+      "price": 90.3,
+      "time": "2024-06-01",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_64",
+      "institution": "Inst_64",
+      "price": 90.76,
+      "time": "2024-06-02",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_13",
+      "institution": "Inst_13",
+      "price": 91.03,
+      "time": "2024-06-03",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_81",
+      "institution": "Inst_81",
+      "price": 91.21,
+      "time": "2024-06-04",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_47",
+      "institution": "Inst_47",
+      "price": 91.7,
+      "time": "2024-06-05",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_99",
+      "institution": "Inst_99",
+      "price": 92.54,
+      "time": "2024-06-06",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_76",
+      "institution": "Inst_76",
+      "price": 92.56,
+      "time": "2024-06-07",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_46",
+      "institution": "Inst_46",
+      "price": 93.33,
+      "time": "2024-06-08",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_30",
+      "institution": "Inst_30",
+      "price": 95.69,
+      "time": "2024-06-01",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_10",
+      "institution": "Inst_10",
+      "price": 96.47,
+      "time": "2024-06-02",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_97",
+      "institution": "Inst_97",
+      "price": 96.59,
+      "time": "2024-06-03",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_84",
+      "institution": "Inst_84",
+      "price": 97.12,
+      "time": "2024-06-04",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_33",
+      "institution": "Inst_33",
+      "price": 97.71,
+      "time": "2024-06-05",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_27",
+      "institution": "Inst_27",
+      "price": 98.45,
+      "time": "2024-06-06",
+      "isAbnormal": false
+    },
+    {
+      "id": "Inst_88",
+      "institution": "Inst_88",
+      "price": 98.76,
+      "time": "2024-06-07",
+      "isAbnormal": false
+    }
+  ],
+  "links": [
+    {
+      "source": "Inst_94",
+      "target": "Inst_94",
+      "isAbnormal": true
+    },
+    {
+      "source": "Inst_94",
+      "target": "Inst_69",
+      "isAbnormal": true
+    },
+    {
+      "source": "Inst_69",
+      "target": "Inst_3",
+      "isAbnormal": true
+    },
+    {
+      "source": "Inst_3",
+      "target": "Inst_77",
+      "isAbnormal": true
+    },
+    {
+      "source": "Inst_77",
+      "target": "Inst_83",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_83",
+      "target": "Inst_57",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_57",
+      "target": "Inst_0",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_0",
+      "target": "Inst_54",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_54",
+      "target": "Inst_97",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_44",
+      "target": "Inst_93",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_93",
+      "target": "Inst_48",
+      "isAbnormal": true
+    },
+    {
+      "source": "Inst_48",
+      "target": "Inst_80",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_80",
+      "target": "Inst_73",
+      "isAbnormal": true
+    },
+    {
+      "source": "Inst_37",
+      "target": "Inst_12",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_12",
+      "target": "Inst_46",
+      "isAbnormal": true
+    },
+    {
+      "source": "Inst_46",
+      "target": "Inst_85",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_85",
+      "target": "Inst_82",
+      "isAbnormal": true
+    },
+    {
+      "source": "Inst_82",
+      "target": "Inst_68",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_68",
+      "target": "Inst_48",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_48",
+      "target": "Inst_88",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_88",
+      "target": "Inst_98",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_98",
+      "target": "Inst_4",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_72",
+      "target": "Inst_83",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_83",
+      "target": "Inst_82",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_82",
+      "target": "Inst_31",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_31",
+      "target": "Inst_95",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_17",
+      "target": "Inst_6",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_6",
+      "target": "Inst_20",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_20",
+      "target": "Inst_8",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_8",
+      "target": "Inst_59",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_59",
+      "target": "Inst_1",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_1",
+      "target": "Inst_68",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_68",
+      "target": "Inst_43",
+      "isAbnormal": true
+    },
+    {
+      "source": "Inst_92",
+      "target": "Inst_64",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_64",
+      "target": "Inst_13",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_13",
+      "target": "Inst_81",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_81",
+      "target": "Inst_47",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_47",
+      "target": "Inst_99",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_99",
+      "target": "Inst_76",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_76",
+      "target": "Inst_46",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_30",
+      "target": "Inst_10",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_10",
+      "target": "Inst_97",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_97",
+      "target": "Inst_84",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_84",
+      "target": "Inst_33",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_33",
+      "target": "Inst_27",
+      "isAbnormal": false
+    },
+    {
+      "source": "Inst_27",
+      "target": "Inst_88",
+      "isAbnormal": false
+    }
+  ]
+}

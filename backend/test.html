@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bond Transaction Tree Network</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="data.js"></script> <!-- 引入 data.js -->
+    <style>
+        .node {
+            stroke: #333;
+            stroke-width: 1.5px;
+            cursor: pointer;
+        }
+        .link {
+            fill: none;
+            stroke: #ccc;
+            stroke-opacity: 0.6;
+        }
+        .highlight {
+            stroke: #ff5733;
+            stroke-width: 2;
+            stroke-opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <svg width="1960" height="1600"></svg>
+
+    <script>
+      const width = 1960, height = 1600;
+      const svg = d3.select("svg");
+  
+      const margin = { top: 500, right: 20, bottom: 30, left: 40 };
+      const treeLayout = d3.tree().size([width - margin.left - margin.right, height - margin.top - margin.bottom]);
+  
+      // 假设 data.js 中有以下交易数据，并且每个交易包含 transactionTime 字段
+      // 将交易数据按时间排序
+      const sortedData = data.sort((a, b) => new Date(a.transactionTime) - new Date(b.transactionTime));
+  
+      // 转换为树形结构，假设 "买方机构" 为父节点，"卖方机构" 为子节点
+      const treeData = {
+          name: sortedData[0].byr_instn_cn_full_nm,  // 树的根节点为第一个交易的买方机构
+          children: []
+      };
+  
+      sortedData.forEach((d) => {
+          const parentNode = treeData.children.find(node => node.name === d.byr_instn_cn_full_nm);
+          if (parentNode) {
+              // 如果已经有相同买方机构的节点，则直接添加到该节点下
+              parentNode.children.push({
+                  name: d.slr_instn_cn_full_nm,
+                  transactionId: d.transactionId,
+                  transactionVolume: d.transactionVolume,
+                  netPrice: d.netPrice,
+                  yld_to_mrty: d.yld_to_mrty,
+                  transactionTime: d.transactionTime
+              });
+          } else {
+              // 否则创建新的买方节点
+              treeData.children.push({
+                  name: d.byr_instn_cn_full_nm,
+                  children: [
+                      {
+                          name: d.slr_instn_cn_full_nm,
+                          transactionId: d.transactionId,
+                          transactionVolume: d.transactionVolume,
+                          netPrice: d.netPrice,
+                          yld_to_mrty: d.yld_to_mrty,
+                          transactionTime: d.transactionTime
+                      }
+                  ]
+              });
+          }
+      });
+  
+      // 创建树形布局
+      const root = d3.hierarchy(treeData);
+      const links = treeLayout(root).links();  // 获取树的链接信息
+      const nodes = root.descendants();  // 获取所有节点
+  
+      // 创建时间比例尺
+      const timeScale = d3.scaleTime()
+          .domain(d3.extent(sortedData, d => new Date(d.transactionTime)))  // 获取时间范围
+          .range([0, height - margin.top - margin.bottom]);  // 设置纵轴范围（不包括顶部和底部间距）
+  
+      // 计算每个节点的纵坐标
+      nodes.forEach((node, index) => {
+          node.y = index*20;  // 通过时间映射纵坐标
+      });
+  
+      // 绘制链接线
+      svg.selectAll(".link")
+          .data(links)
+          .enter().append("line")
+          .attr("class", "link")
+          .attr("x1", d => d.source.x + margin.left)
+          .attr("y1", d => d.source.y + margin.top)
+          .attr("x2", d => d.target.x + margin.left)
+          .attr("y2", d => d.target.y + margin.top);
+  
+      // 绘制节点
+      const node = svg.selectAll(".node")
+          .data(nodes)
+          .enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${d.x + margin.left}, ${d.y + margin.top})`);
+  
+      node.append("circle")
+          .attr("r", 10)
+          .attr("fill", "#ff5733");
+  
+      node.append("text")
+          .attr("dy", -15)
+          .attr("text-anchor", "middle")
+          .text(d => d.data.name);
+  
+      node.append("title")
+          .text(d => `Transaction ID: ${d.data.transactionId}\nVolume: ${d.data.transactionVolume}`);
+  </script>
+  
+  
+</body>
+</html>

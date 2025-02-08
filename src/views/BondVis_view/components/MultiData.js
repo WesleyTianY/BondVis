@@ -1,0 +1,74 @@
+import { getMarketPriceData, getTransactionDataTsne, getYld_to_mrtyTsne, getTransactionData, getYld_to_mrtyData, getValuationData } from '../../../api/transaction.js';
+class MultiData {
+  constructor() {
+    this.dataPackage = {
+      mktPrice: [],
+      transaction: [],
+      transactionTsne: [],
+      valuation: [],
+      volume: [],
+      gradient: [],
+      mktPriceTrue: []
+    }
+  }
+  async generateData_marco(bond_cd, date, duration_days) {
+    try {
+      const mktPrice = await this.fetchMarketPriceData(bond_cd)
+      this.dataPackage.mktPrice = mktPrice
+    } catch (error) {
+      console.error('Error generating data:', error)
+    }
+  }
+  async generateData_time(bond_cd, date, duration_days) {
+    try {
+      const mktPrice = await this.fetchMarketPriceData(bond_cd)
+      const transaction = await this.fetchTransactionData(bond_cd)
+      const volume = await transaction 
+      const valuation = await this.fetchValuationData(bond_cd)
+      this.dataPackage.mktPrice = mktPrice
+      this.dataPackage.transaction = transaction
+      this.dataPackage.volume = volume
+      this.dataPackage.valuation = valuation
+    } catch (error) {
+      console.error('Error generating data:', error)
+    }
+  }
+  async generateData_tsne(bond_cd, date, duration_days) {
+    try {
+      const transactionTsne = await this.fetchTransactionDataTsne(bond_cd)
+      this.dataPackage.transactionTsne = transactionTsne
+    } catch (error) {
+      console.error('Error generating data:', error)
+    }
+  }
+  async generateData_Yld_to_mrtytsne(bond_cd, date, duration_days) {
+    try {
+      const transactionTsne = await this.fetchTransactionDataYld_to_mrtyTsne(bond_cd)
+      const valuation = await this.fetchValuationData(bond_cd)
+      this.dataPackage.transactionTsne = transactionTsne
+      this.dataPackage.valuation = valuation
+    } catch (error) {
+      console.error('Error generating data:', error)
+    }
+  }
+
+  async fetchMarketPriceData(bond_cd) {
+    return await getMarketPriceData(bond_cd);
+  }
+  async fetchTransactionDataTsne(bond_cd) {
+    return await getTransactionDataTsne(bond_cd);
+  }
+  async fetchTransactionDataYld_to_mrtyTsne(bond_cd) {
+    return await getYld_to_mrtyTsne(bond_cd);
+  }
+  async fetchTransactionDataYld_to_mrty(bond_cd) {
+    return await getTransactionDataYld_to_mrty(bond_cd);
+  }
+  async fetchTransactionData(bond_cd) {
+    return await getTransactionData(bond_cd);
+  }
+  async fetchValuationData(bond_cd) {
+    return await getValuationData(bond_cd);
+  }
+}
+export default MultiData
